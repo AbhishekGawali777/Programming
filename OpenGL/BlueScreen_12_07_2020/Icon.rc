@@ -1,0 +1,2 @@
+#include "OpenGLHeader.h"
+MYICON ICON MyIcon.ico
