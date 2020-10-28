@@ -15,15 +15,19 @@ WINDOWPLACEMENT wpPrev = { sizeof(WINDOWPLACEMENT) };
 bool gbFullScreen = false;
 bool gbActiveWindow = false;
 
-static GLfloat  fx1 = -2.0f;
-static GLfloat  fy1 = 2.5f;
-static GLfloat  fy2 = -2.0f;
-static GLfloat  fx2 = 2.0f;
-static GLfloat fPlane = -3.5f;
-static GLfloat fRed = 0.0f;
-static GLfloat fGreen = 0.0f;
-static GLfloat fZmin = 1.0f;
+GLfloat  fx1 = -2.0f;
+GLfloat  fy1 = 2.5f;
+GLfloat  fy2 = -2.0f;
+GLfloat  fx2 = 2.0f;
+GLfloat fPlane = -3.5f;
+GLfloat fRed = 0.0f;
+GLfloat fGreen = 0.0f;
+GLfloat fZmin = 1.0f;
+GLfloat X = -15.0f;
+GLfloat Y_TopPlane= 5.0f;
+GLfloat Y_Bottom = -5.0f;
 
+GLfloat f_TranslatedPlane = -3.5f;
 
 // WinMain()
 
@@ -90,7 +94,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	ShowWindow(hwnd, iCmdShow);
 	SetForegroundWindow(hwnd);
 	SetFocus(hwnd);
-	ToggleFullScreen();
+	//ToggleFullScreen();
 	
 	PlaySound(MAKEINTRESOURCE(MYSONG), hInstance, SND_ASYNC | SND_RESOURCE);
 
@@ -292,10 +296,6 @@ void ToggleFullScreen(void)
 
 void Display(void)
 {
-	// Local variable Declarations
-
-	
-
 	// Code
 
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -306,19 +306,7 @@ void Display(void)
 	//DrawFlag();
 	DrawINDIA();
 	DrawIAFPlanes();
-
-	// -
-
-	/*glColor3f(8.0f, 0.5f, 0.0f);
-	glVertex3f(1.33f, 0.0f, 0.0f);
-	glVertex3f(1.22f, 0.0f, 0.0f);
-
-	glColor3f(0.0f, 0.5f, 0.0f);
-	glVertex3f(1.18f, -0.1f, 0.0f);
-	glVertex3f(1.35f, -0.1f, 0.0f);*/
-
-
-	//glEnd();
+	DrawTranslateIAFPlanes();
 
 	SwapBuffers(ghdc);
 
@@ -464,28 +452,17 @@ void DrawIAFPlanes(void)
 
 		glBegin(GL_QUADS);
 
-		glColor3f(1.0f, 0.5f, 0.0f);
-
-		glVertex3f(-1.0f, 0.4f, 0.0f);
-		glVertex3f(-3.0f, 0.4f, 0.0f);
-		glVertex3f(-3.0f, 0.1f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, 0.1f, 0.0f);
-
 		glColor3f(1.0f, 1.0f, 1.0f);
 
-		glVertex3f(-1.0f, 0.1f, 0.0f);
-		glVertex3f(-3.0f, 0.1f, 0.0f);
-		glVertex3f(-3.0f, -0.2f, 0.0f);
+		glVertex3f(-1.0f, 0.4f, 0.0f);
+		
 		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, -0.2f, 0.0f);
-
-		glColor3f(0.0f, 0.5f, 0.0f);
-
-		glVertex3f(-1.0f, -0.2f, 0.0f);
-		glVertex3f(-3.0f, -0.2f, 0.0f);
+		
+		glVertex3f(-3.0f, 0.4f, 0.0f);
 		glVertex3f(-3.0f, -0.4f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
+		
+		glColor3f(1.0f, 1.0f, 1.0f);
+		
 		glVertex3f(-1.0f, -0.4f, 0.0f);
 
 		glEnd();
@@ -574,26 +551,37 @@ void DrawIAFPlanes(void)
 
 		glColor3f(1.0f, 0.5f, 0.0f);
 
+		//glVertex3f(-1.0f, 0.4f, 0.0f);
+		//glVertex3f(-3.0f, 0.4f, 0.0f);
+		//glVertex3f(-3.0f, 0.1f, 0.0f);
+		//glColor3f(0.0f, 0.0f, 0.0f);
+		//glVertex3f(-1.0f, 0.1f, 0.0f);
+
+		//glColor3f(1.0f, 1.0f, 1.0f);
+
+		//glVertex3f(-1.0f, 0.1f, 0.0f);
+		//glVertex3f(-3.0f, 0.1f, 0.0f);
+		//glVertex3f(-3.0f, -0.2f, 0.0f);
+		//glColor3f(0.0f, 0.0f, 0.0f);
+		//glVertex3f(-1.0f, -0.2f, 0.0f);
+
+		//glColor3f(0.0f, 0.5f, 0.0f);
+
+		//glVertex3f(-1.0f, -0.2f, 0.0f);
+		//glVertex3f(-3.0f, -0.2f, 0.0f);
+		//glVertex3f(-3.0f, -0.4f, 0.0f);
+		//glColor3f(0.0f, 0.0f, 0.0f);
+		//glVertex3f(-1.0f, -0.4f, 0.0f);
+		
 		glVertex3f(-1.0f, 0.4f, 0.0f);
+
+		glColor3f(0.0f, 0.0f, 0.0f);
+
 		glVertex3f(-3.0f, 0.4f, 0.0f);
-		glVertex3f(-3.0f, 0.1f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, 0.1f, 0.0f);
-
-		glColor3f(1.0f, 1.0f, 1.0f);
-
-		glVertex3f(-1.0f, 0.1f, 0.0f);
-		glVertex3f(-3.0f, 0.1f, 0.0f);
-		glVertex3f(-3.0f, -0.2f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, -0.2f, 0.0f);
-
-		glColor3f(0.0f, 0.5f, 0.0f);
-
-		glVertex3f(-1.0f, -0.2f, 0.0f);
-		glVertex3f(-3.0f, -0.2f, 0.0f);
 		glVertex3f(-3.0f, -0.4f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
+
+		glColor3f(1.0f, 0.5f, 0.0f);
+
 		glVertex3f(-1.0f, -0.4f, 0.0f);
 
 		glEnd();
@@ -680,32 +668,20 @@ void DrawIAFPlanes(void)
 
 		glBegin(GL_QUADS);
 
-		glColor3f(1.0f, 0.5f, 0.0f);
+		glColor3f(0.0f, 1.0f, 0.0f);
 
 		glVertex3f(-1.0f, 0.4f, 0.0f);
+
+		glColor3f(0.0f, 0.0f, 0.0f);
+
 		glVertex3f(-3.0f, 0.4f, 0.0f);
-		glVertex3f(-3.0f, 0.1f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, 0.1f, 0.0f);
-
-		glColor3f(1.0f, 1.0f, 1.0f);
-
-		glVertex3f(-1.0f, 0.1f, 0.0f);
-		glVertex3f(-3.0f, 0.1f, 0.0f);
-		glVertex3f(-3.0f, -0.2f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, -0.2f, 0.0f);
-
-		glColor3f(0.0f, 0.5f, 0.0f);
-
-		glVertex3f(-1.0f, -0.2f, 0.0f);
-		glVertex3f(-3.0f, -0.2f, 0.0f);
 		glVertex3f(-3.0f, -0.4f, 0.0f);
-		glColor3f(0.0f, 0.0f, 0.0f);
+
+		glColor3f(0.0f, 1.0f, 0.0f);
+
 		glVertex3f(-1.0f, -0.4f, 0.0f);
 
 		glEnd();
-
 
 		fPlane = fPlane + 0.001f;
 	}
@@ -750,7 +726,7 @@ void DrawINDIA(void)
 
 		glEnd();
 
-		fx1 = fx1 + 0.001f;
+		fx1 = fx1 + 0.01f;
 	}
 
 	// N
@@ -796,7 +772,7 @@ void DrawINDIA(void)
 
 		glEnd();
 
-		fy1 = fy1 - 0.001f;
+		fy1 = fy1 - 0.01f;
 
 	}
 
@@ -842,8 +818,8 @@ void DrawINDIA(void)
 		glVertex3f(-0.1f, -0.3f, 0.0f);
 		glVertex3f(0.0f, -0.3f, 0.0f);
 
-		fRed = fRed + 0.00015f;
-		fGreen = fGreen + 0.0001f;
+		fRed = fRed + 0.0015f;
+		fGreen = fGreen + 0.001f;
 
 		glEnd();
 	}
@@ -881,7 +857,7 @@ void DrawINDIA(void)
 
 		glEnd();
 
-		fy2 = fy2 + 0.001f;
+		fy2 = fy2 + 0.01f;
 	}
 
 	// A
@@ -916,9 +892,10 @@ void DrawINDIA(void)
 
 		glEnd();
 
-		fx2 = fx2 - 0.001f;
-	}
+		fx2 = fx2 - 0.01f;
 
+	}
+	
 }
 
 //DrawTranslateIAFPlanes()
@@ -927,7 +904,365 @@ void DrawTranslateIAFPlanes(void)
 {
 	// Code
 
+	// IAF Plane Middle
+	if (fx2 <= 0.0f)
+	{
+		if (X >= 7.0f)
+		{
+			// -
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
 
+			glTranslatef(0.0f, 0.0f, -4.0f);
+			glBegin(GL_QUADS);
+
+			glColor3f(1.0f, 0.5f, 0.0f);
+			glVertex3f(1.33f, 0.0f, 0.0f);
+			glVertex3f(1.22f, 0.0f, 0.0f);
+			glVertex3f(1.18f, -0.05f, 0.0f);
+			glVertex3f(1.35f, -0.05f, 0.0f);
+
+			glColor3f(1.0f, 1.0f, 1.0f);
+			glVertex3f(1.35f, -0.05f, 0.0f);
+			glVertex3f(1.18f, -0.05f, 0.0f);
+			glVertex3f(1.17f, -0.1f, 0.0f);
+			glVertex3f(1.35f, -0.1f, 0.0f);
+
+			glColor3f(0.0f, 0.5f, 0.0f);
+			glVertex3f(1.35f, -0.1f, 0.0f);
+			glVertex3f(1.18f, -0.1f, 0.0f);
+			glVertex3f(1.17f, -0.15f, 0.0f);
+			glVertex3f(1.36f, -0.15f, 0.0f);
+
+			glEnd();
+		}
+
+		if (f_TranslatedPlane <= 2.5f)
+		{
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+
+			glTranslatef(X, -0.2f, -20.0f);
+
+			glBegin(GL_TRIANGLES);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(1.0f, 0.0f, 0.0f);
+			glVertex3f(0.3f, 0.2f, 0.0f);
+			glVertex3f(0.3f, -0.2f, 0.0f);
+
+			glColor3f(0.0f, 0.0f, 0.5f);
+
+			glVertex3f(0.7f, 0.0f, 0.0f);
+
+			glColor3f(0.0f, 1.0f, 0.5f);
+
+			glVertex3f(0.4f, 0.1f, 0.0f);
+			glVertex3f(0.4f, -0.1f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(0.3f, 0.2f, 0.0f);
+			glVertex3f(0.2f, 0.2f, 0.0f);
+			glVertex3f(0.2f, -0.2f, 0.0f);
+			glVertex3f(0.3f, -0.2f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(0.2f, 0.2f, 0.0f);
+			glVertex3f(-0.3f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.5f, 0.0f);
+			glVertex3f(0.2f, -0.2f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_TRIANGLES);
+
+			glVertex3f(0.1f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, 0.4f, 0.0f);
+
+			glVertex3f(0.1f, -0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.4f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glVertex3f(-0.3f, 0.2f, 0.0f);
+			glVertex3f(-0.5f, 0.4f, 0.0f);
+			glVertex3f(-0.5f, -0.4f, 0.0f);
+			glVertex3f(-0.3f, -0.2f, 0.0f);
+
+			glEnd();
+
+			// Indian Flag
+
+			glTranslatef(X, -0.2f, -20.0f);
+
+			glBegin(GL_QUADS);
+
+			glColor3f(1.0f, 1.0f, 1.0f);
+
+			glVertex3f(-1.0f, 0.4f, 0.0f);
+
+			glColor3f(0.0f, 0.0f, 0.0f);
+
+			glVertex3f(-3.0f, 0.4f, 0.0f);
+			glVertex3f(-3.0f, -0.4f, 0.0f);
+
+			glColor3f(1.0f, 1.0f, 1.0f);
+
+			glVertex3f(-1.0f, -0.4f, 0.0f);
+
+			glEnd();
+			
+			X = X + 0.01f;
+		}
+
+		// Second plane Upper
+
+		if (f_TranslatedPlane <= 2.5f)
+		{
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+
+			glTranslatef(X, Y_TopPlane + 0.2f, -20.0f);
+
+			glBegin(GL_TRIANGLES);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(1.0f, 0.0f, 0.0f);
+			glVertex3f(0.3f, 0.2f, 0.0f);
+			glVertex3f(0.3f, -0.2f, 0.0f);
+
+			glColor3f(0.0f, 0.0f, 0.5f);
+
+			glVertex3f(0.7f, 0.0f, 0.0f);
+
+			glColor3f(0.0f, 1.0f, 0.5f);
+
+			glVertex3f(0.4f, 0.1f, 0.0f);
+			glVertex3f(0.4f, -0.1f, 0.0f);
+
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(0.3f, 0.2f, 0.0f);
+			glVertex3f(0.2f, 0.2f, 0.0f);
+			glVertex3f(0.2f, -0.2f, 0.0f);
+			glVertex3f(0.3f, -0.2f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(0.2f, 0.2f, 0.0f);
+			glVertex3f(-0.3f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.5f, 0.0f);
+			glVertex3f(0.2f, -0.2f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_TRIANGLES);
+
+			glVertex3f(0.1f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, 0.4f, 0.0f);
+
+			glVertex3f(0.1f, -0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.4f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glVertex3f(-0.3f, 0.2f, 0.0f);
+			glVertex3f(-0.5f, 0.4f, 0.0f);
+			glVertex3f(-0.5f, -0.4f, 0.0f);
+			glVertex3f(-0.3f, -0.2f, 0.0f);
+
+			glEnd();
+
+			// Indian Flag
+
+			glTranslatef(X, Y_TopPlane + 0.2f, -20.0f);
+
+			glBegin(GL_QUADS);
+
+			glColor3f(1.0f, 0.5f, 0.0f);
+
+			//glVertex3f(-1.0f, 0.4f, 0.0f);
+			//glVertex3f(-3.0f, 0.4f, 0.0f);
+			//glVertex3f(-3.0f, 0.1f, 0.0f);
+			//glColor3f(0.0f, 0.0f, 0.0f);
+			//glVertex3f(-1.0f, 0.1f, 0.0f);
+			//glColor3f(1.0f, 1.0f, 1.0f);
+			//glVertex3f(-1.0f, 0.1f, 0.0f);
+			//glVertex3f(-3.0f, 0.1f, 0.0f);
+			//glVertex3f(-3.0f, -0.2f, 0.0f);
+			//glColor3f(0.0f, 0.0f, 0.0f);
+			//glVertex3f(-1.0f, -0.2f, 0.0f);
+			//glColor3f(0.0f, 0.5f, 0.0f);
+			//glVertex3f(-1.0f, -0.2f, 0.0f);
+			//glVertex3f(-3.0f, -0.2f, 0.0f);
+			//glVertex3f(-3.0f, -0.4f, 0.0f);
+			//glColor3f(0.0f, 0.0f, 0.0f);
+			//glVertex3f(-1.0f, -0.4f, 0.0f);
+
+			glVertex3f(-1.0f, 0.4f, 0.0f);
+
+			glColor3f(0.0f, 0.0f, 0.0f);
+
+			glVertex3f(-3.0f, 0.4f, 0.0f);
+			glVertex3f(-3.0f, -0.4f, 0.0f);
+
+			glColor3f(1.0f, 0.5f, 0.0f);
+
+			glVertex3f(-1.0f, -0.4f, 0.0f);
+
+			glEnd();
+			
+			if (X > 10.0f)
+			{
+				Y_TopPlane = Y_TopPlane - 0.01f;
+				Y_Bottom = Y_Bottom + 0.01f;
+			}
+			else
+			{
+				X = X + 0.01f;
+				Y_Bottom = Y_Bottom - 0.01f;
+				Y_TopPlane = Y_TopPlane + 0.01f;
+			}
+		}
+
+		// Third plane Bottom
+
+		if (f_TranslatedPlane <= 2.5f)
+		{
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+
+			glTranslatef(X, Y_Bottom - 0.55f, -20.0f);
+
+			glBegin(GL_TRIANGLES);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(1.0f, 0.0f, 0.0f);
+			glVertex3f(0.3f, 0.2f, 0.0f);
+			glVertex3f(0.3f, -0.2f, 0.0f);
+
+			glColor3f(0.0f, 0.0f, 0.5f);
+
+			glVertex3f(0.7f, 0.0f, 0.0f);
+
+			glColor3f(0.0f, 1.0f, 0.5f);
+
+			glVertex3f(0.4f, 0.1f, 0.0f);
+			glVertex3f(0.4f, -0.1f, 0.0f);
+
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(0.3f, 0.2f, 0.0f);
+			glVertex3f(0.2f, 0.2f, 0.0f);
+			glVertex3f(0.2f, -0.2f, 0.0f);
+			glVertex3f(0.3f, -0.2f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.2f, 0.3f, 0.4f);
+
+			glVertex3f(0.2f, 0.2f, 0.0f);
+			glVertex3f(-0.3f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.5f, 0.0f);
+			glVertex3f(0.2f, -0.2f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_TRIANGLES);
+
+			glVertex3f(0.1f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, 0.5f, 0.0f);
+			glVertex3f(-0.3f, 0.4f, 0.0f);
+
+			glVertex3f(0.1f, -0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.5f, 0.0f);
+			glVertex3f(-0.3f, -0.4f, 0.0f);
+
+			glEnd();
+
+			glBegin(GL_QUADS);
+
+			glVertex3f(-0.3f, 0.2f, 0.0f);
+			glVertex3f(-0.5f, 0.4f, 0.0f);
+			glVertex3f(-0.5f, -0.4f, 0.0f);
+			glVertex3f(-0.3f, -0.2f, 0.0f);
+
+			glEnd();
+
+			// Indian Flag
+
+			glTranslatef(X, Y_Bottom - 0.6f, -20.0f);
+
+			glBegin(GL_QUADS);
+
+			glColor3f(0.0f, 1.0f, 0.0f);
+
+			glVertex3f(-1.0f, 0.4f, 0.0f);
+
+			glColor3f(0.0f, 0.0f, 0.0f);
+
+			glVertex3f(-3.0f, 0.4f, 0.0f);
+			glVertex3f(-3.0f, -0.4f, 0.0f);
+
+			glColor3f(0.0f, 1.0f, 0.0f);
+
+			glVertex3f(-1.0f, -0.4f, 0.0f);
+
+			glEnd();
+			
+			if (X > 10.0f)
+			{
+				Y_TopPlane = Y_TopPlane + 0.03f;
+				Y_Bottom = Y_Bottom - 0.03f;
+			}
+			else
+			{
+				X = X + 0.01f;
+				Y_Bottom = Y_Bottom + 0.03f;
+				Y_TopPlane = Y_TopPlane - 0.03f;
+			}
+		}
+	}
+
+	if (X > 20.0f)
+		DestroyWindow(ghwnd);
 }
 
 // Resize()
@@ -968,6 +1303,21 @@ void Update(void)
 
 	if (fGreen > 0.5f)
 		fGreen = 0.5f;
+
+
+	if (X > 10.0f)
+	{
+		f_TranslatedPlane = f_TranslatedPlane + 0.01f;
+	}
+	else
+	{
+		if (Y_TopPlane < 0.0f)
+			Y_TopPlane = 0.0f;
+
+		if (Y_Bottom > 0.0f)
+			Y_Bottom = 0.0f; 	
+	}
+
 }
 
 // Uninitialize()
