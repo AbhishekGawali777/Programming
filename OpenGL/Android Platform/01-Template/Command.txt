@@ -1,0 +1,7 @@
+1.> gradlew.bat clean
+2.> gradlew.bat build
+3.> adb devices // Check Devices are detected or not (Android Debug Bridge)
+4.> adb -d install -r app\build\output\apk\debug\apk-debug.apk
+
+d : install on device
+r : if already this application is present on device then replace that. 

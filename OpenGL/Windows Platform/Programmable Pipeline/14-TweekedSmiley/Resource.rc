@@ -1,0 +1,4 @@
+#include<TweekedSmiley.h>
+
+MYICON 			ICON		MyIcon.ico
+SMILEY_BITMAP	BITMAP 		Smiley.bmp

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Unicode Transforming Format (Created By Brian Kernighan and Rob Pike) 11,12,064 Formats -->
+<!-- xmlns :  xml Namespace  yapudhhe aslelya url pasn package chi (NetworkID)GUID create hote-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.abhishek.window"> <!-- internally yacha ek unique id tayar hoto. -->
+    <!-- application is a java class internally used as XML tag -->
+    <application
+        android:icon="@mipmap/my_app_icon"
+        android:label="@string/app_name" 
+        android:roundIcon="@mipmap/my_app_icon"
+        android:theme="@style/Theme.AppCompat">
+        <activity android:name=".MainActivity"> <!-- "activity" - Inner class under application class. Class Name : MainActivity Class-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

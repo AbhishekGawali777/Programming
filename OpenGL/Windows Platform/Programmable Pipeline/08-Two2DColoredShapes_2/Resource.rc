@@ -1,0 +1,3 @@
+#include"Two2DColoredShapes.h"
+
+MYICON				ICON					MyIcon.ico

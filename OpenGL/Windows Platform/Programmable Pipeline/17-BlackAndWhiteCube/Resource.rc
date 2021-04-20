@@ -1,0 +1,3 @@
+#include"WhiteCube.h"
+
+MYICON				ICON					MyIcon.ico
