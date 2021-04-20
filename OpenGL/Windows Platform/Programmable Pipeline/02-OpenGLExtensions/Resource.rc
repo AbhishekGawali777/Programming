@@ -1,0 +1,3 @@
+#include"OpenGLExtensions.h"
+
+MYICON				ICON					MyIcon.ico

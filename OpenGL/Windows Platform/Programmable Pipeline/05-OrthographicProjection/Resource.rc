@@ -1,0 +1,3 @@
+#include"OrthographicProjection.h"
+
+MYICON				ICON					MyIcon.ico

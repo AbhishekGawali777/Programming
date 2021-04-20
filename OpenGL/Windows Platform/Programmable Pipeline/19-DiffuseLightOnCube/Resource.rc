@@ -1,0 +1,3 @@
+#include"DiffuseLightOnCube.h"
+
+MYICON				ICON					MyIcon.ico

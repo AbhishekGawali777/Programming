@@ -1,0 +1,3 @@
+#include"WhitePyramid.h"
+
+MYICON				ICON					MyIcon.ico

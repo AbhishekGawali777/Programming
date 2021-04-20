@@ -1,0 +1,6 @@
+#include"MyHeader.h"
+
+MYICON					ICON				MyIcon.ico
+SUN_BITMAP				BITMAP				Sun.bmp
+MOON_BITMAP				BITMAP				Moon.bmp
+EARTH_BITMAP			BITMAP				Earth.bmp

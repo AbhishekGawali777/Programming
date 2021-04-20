@@ -1,0 +1,3 @@
+#include"BlueScreen.h"
+
+MYICON				ICON					MyIcon.ico

@@ -1,0 +1,15 @@
+Log File Created Successfully...!!!
+
+******************************************************************************
+
+OpenGL Vendor		: NVIDIA Corporation
+
+OpenGL Renderer		: GeForce GT 710/PCIe/SSE2
+
+OpenGL Version		: 4.6.0 NVIDIA 461.09
+
+GLSL Version		: NVIDIA Corporation
+
+******************************************************************************
+
+Log File Closed Successfully...!!!

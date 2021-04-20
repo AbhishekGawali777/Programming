@@ -1,0 +1,4 @@
+#include"MyHeader.h"
+
+MYICON			ICON		MyIcon.ico
+KUNDALI_BITMAP	BITMAP		Vijay_Kundali.bmp

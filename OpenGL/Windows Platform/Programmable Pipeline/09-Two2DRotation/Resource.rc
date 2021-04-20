@@ -1,0 +1,3 @@
+#include"Two2DRotation.h"
+
+MYICON				ICON					MyIcon.ico
