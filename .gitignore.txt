@@ -1,0 +1,14 @@
+#Ignore all .log files
+*.log
+
+#Ignore Environment Variables
+*.env
+
+#Ignore Object file
+*.o
+
+#Ignore Executable Files
+*.out
+*.exe
+*.exec
+*.app
