@@ -6,7 +6,7 @@
 int main() {
 
     const char* server_ip = "127.0.0.1";
-    int port = 8080;
+    const int port = 8080;
     
     // Initialize socket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
