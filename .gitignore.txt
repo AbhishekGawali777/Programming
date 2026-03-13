@@ -1,14 +1,14 @@
-#Ignore all .log files
-*.log
+# 1. Ignore everything by default
+*
 
-#Ignore Environment Variables
-*.env
+# 2. Ignore the build directory and its contents entirely
+build/
 
-#Ignore Object file
-*.o
+# 3. Allow directories (required to find files inside other folders)
+!*/
 
-#Ignore Executable Files
-*.out
-*.exe
-*.exec
-*.app
+# 4. Allow specific file types
+!*.cpp
+!*.h
+!.gitignore
+!CMakeLists.txt
