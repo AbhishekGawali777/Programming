@@ -1,14 +1,9 @@
-#Ignore all .log files
-*.log
+# Ignore everything
+*
 
-#Ignore Environment Variables
-*.env
+# But do not ignore directories (needed to search for files inside them)
+!*/
 
-#Ignore Object file
-*.o
-
-#Ignore Executable Files
-*.out
-*.exe
-*.exec
-*.app
+# Do not ignore .cpp and .h files
+!*.cpp
+!*.h
