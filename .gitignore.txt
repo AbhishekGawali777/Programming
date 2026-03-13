@@ -1,9 +1,14 @@
-# Ignore everything
+# 1. Ignore everything by default
 *
 
-# But do not ignore directories (needed to search for files inside them)
+# 2. Ignore the build directory and its contents entirely
+build/
+
+# 3. Allow directories (required to find files inside other folders)
 !*/
 
-# Do not ignore .cpp and .h files
+# 4. Allow specific file types
 !*.cpp
 !*.h
+!.gitignore
+!CMakeLists.txt

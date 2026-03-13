@@ -1,0 +1,3 @@
+/Volumes/Programming/Coding/Programming/Networking/http_server/build/CMakeFiles/http_server.dir
+/Volumes/Programming/Coding/Programming/Networking/http_server/build/CMakeFiles/edit_cache.dir
+/Volumes/Programming/Coding/Programming/Networking/http_server/build/CMakeFiles/rebuild_cache.dir

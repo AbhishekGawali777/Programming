@@ -21,6 +21,7 @@ int main() {
     server.sin_family = AF_INET;
     server.sin_port = htons(port);
 
+    // Convert IP Address to byte order format
     inet_pton(AF_INET, server_ip, &server.sin_addr);
 
     // Connect to the server
